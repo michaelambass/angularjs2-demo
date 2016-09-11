@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
+import { Hero } from './hero';
 
 // Constant containing an array with a list of heroes
 const HEROES: Hero[] = [
@@ -21,23 +17,17 @@ const HEROES: Hero[] = [
 
 @Component({
     selector: 'my-app',
-    template:`
+    template: `
       <h1>{{title}}</h1>
-      <h2>My heroes</h2>
+      <h2>My Heroes</h2>
       <ul class="heroes">
-      <li *ngFor="let hero of heroes"
-      [class.selected]="hero === selectedHero"
-      (click)="onSelect(hero)">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </li>
+        <li *ngFor="let hero of heroes"
+          [class.selected]="hero === selectedHero"
+          (click)="onSelect(hero)">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </li>
       </ul>
-
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input type="text" [(ngModel)]="selectedHero.name" (click)="onSelect(hero)" placeholder="name" />
-      </div>
+      <my-hero-detail [hero]="selectedHero"></my-hero-detail>
     `,
 
 
